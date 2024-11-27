@@ -140,12 +140,13 @@ jobs:
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "compile_status=success" >> $GITHUB_ENV
 
-    # - name : Upload packages
-      # uses: actions/upload-artifact@master
-      # if: always()
-      # with:
-        # name: AX6-NSS
-        # path: openwrt/bin/targets
+    - name : Upload packages
+      uses: actions/upload-artifact@master
+      if: always()
+      with:
+        name: AX6-NSS
+        path: openwrt/bin
+        
     - name: cp output to upload file
       run: |
         df -hT
